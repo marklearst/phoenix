@@ -331,7 +331,7 @@ describe("SpanEventsListContent", () => {
     { copied: true, status: "Copied to clipboard." },
     {
       copied: false,
-      status: "Could not copy. Select the text and copy it manually.",
+      status: "Could not copy. Try again.",
     },
   ])(
     "preserves the expanded event and keyboard focus when copying resolves to $copied",

@@ -82,18 +82,18 @@ describe("CopyToClipboardButton", () => {
     await press(button);
 
     expect(statusText()).toMatch(/could not copy/i);
-    expect(statusText()).toMatch(/manually/i);
+    expect(statusText()).toMatch(/try again/i);
     expect(button.querySelector("svg")?.innerHTML).not.toBe(idleIcon);
   });
 
-  it("contains asynchronous clipboard rejection and offers manual copying", async () => {
+  it("contains asynchronous clipboard rejection and offers a retry", async () => {
     vi.mocked(copy).mockRejectedValue(new Error("Clipboard unavailable"));
     const button = renderButton();
 
     await press(button);
 
     expect(statusText()).toMatch(/could not copy/i);
-    expect(statusText()).toMatch(/manually/i);
+    expect(statusText()).toMatch(/try again/i);
   });
 
   it("keeps failure guidance available in the tooltip until the user retries", async () => {
@@ -107,7 +107,7 @@ describe("CopyToClipboardButton", () => {
     await act(async () => user.tab());
 
     expect(document.querySelector('[role="tooltip"]')?.textContent).toMatch(
-      /could not copy.*manually/i
+      /could not copy.*try again/i
     );
   });
 

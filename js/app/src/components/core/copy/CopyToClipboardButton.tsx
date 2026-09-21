@@ -51,7 +51,7 @@ export function CopyToClipboardButton(props: CopyToClipboardButtonProps) {
   const statusMessage = isCopied
     ? "Copied to clipboard."
     : hasCopyError
-      ? "Could not copy. Select the text and copy it manually."
+      ? "Could not copy. Try again."
       : "";
 
   useEffect(() => {
