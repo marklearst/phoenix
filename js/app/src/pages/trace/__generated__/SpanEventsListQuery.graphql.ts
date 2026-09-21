@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8ebde02b8659c2585978be7ba731cea1>>
+ * @generated SignedSource<<2a31ce375aa468d4533610aa82f10e0a>>
  * @lightSyntaxTransform
  */
 
@@ -19,6 +19,11 @@ export type SpanEventsListQuery$data = {
       readonly name: string;
       readonly timestamp: string;
     }>;
+    readonly name?: string;
+    readonly spanId?: string;
+    readonly trace?: {
+      readonly traceId: string;
+    };
   };
 };
 export type SpanEventsListQuery = {
@@ -42,50 +47,65 @@ v1 = [
   }
 ],
 v2 = {
-  "kind": "InlineFragment",
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "name",
+  "storageKey": null
+},
+v3 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "spanId",
+  "storageKey": null
+},
+v4 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "traceId",
+  "storageKey": null
+},
+v5 = {
+  "alias": null,
+  "args": null,
+  "concreteType": "SpanEvent",
+  "kind": "LinkedField",
+  "name": "events",
+  "plural": true,
   "selections": [
+    (v2/*:: as any*/),
     {
       "alias": null,
       "args": null,
-      "concreteType": "SpanEvent",
-      "kind": "LinkedField",
-      "name": "events",
-      "plural": true,
-      "selections": [
-        {
-          "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "name",
-          "storageKey": null
-        },
-        {
-          "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "message",
-          "storageKey": null
-        },
-        {
-          "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "timestamp",
-          "storageKey": null
-        },
-        {
-          "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "attributes",
-          "storageKey": null
-        }
-      ],
+      "kind": "ScalarField",
+      "name": "message",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "timestamp",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "attributes",
       "storageKey": null
     }
   ],
-  "type": "Span",
-  "abstractKey": null
+  "storageKey": null
+},
+v6 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
 };
 return {
   "fragment": {
@@ -102,7 +122,28 @@ return {
         "name": "node",
         "plural": false,
         "selections": [
-          (v2/*:: as any*/)
+          {
+            "kind": "InlineFragment",
+            "selections": [
+              (v2/*:: as any*/),
+              (v3/*:: as any*/),
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "Trace",
+                "kind": "LinkedField",
+                "name": "trace",
+                "plural": false,
+                "selections": [
+                  (v4/*:: as any*/)
+                ],
+                "storageKey": null
+              },
+              (v5/*:: as any*/)
+            ],
+            "type": "Span",
+            "abstractKey": null
+          }
         ],
         "storageKey": null
       }
@@ -131,30 +172,46 @@ return {
             "name": "__typename",
             "storageKey": null
           },
-          (v2/*:: as any*/),
           {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "id",
-            "storageKey": null
-          }
+            "kind": "InlineFragment",
+            "selections": [
+              (v2/*:: as any*/),
+              (v3/*:: as any*/),
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "Trace",
+                "kind": "LinkedField",
+                "name": "trace",
+                "plural": false,
+                "selections": [
+                  (v4/*:: as any*/),
+                  (v6/*:: as any*/)
+                ],
+                "storageKey": null
+              },
+              (v5/*:: as any*/)
+            ],
+            "type": "Span",
+            "abstractKey": null
+          },
+          (v6/*:: as any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "2150fcc2cd81d17b248b32d95dbfb63f",
+    "cacheID": "163dccab405b6727d42eedf1f2a14af9",
     "id": null,
     "metadata": {},
     "name": "SpanEventsListQuery",
     "operationKind": "query",
-    "text": "query SpanEventsListQuery(\n  $id: ID!\n) {\n  span: node(id: $id) {\n    __typename\n    ... on Span {\n      events {\n        name\n        message\n        timestamp\n        attributes\n      }\n    }\n    id\n  }\n}\n"
+    "text": "query SpanEventsListQuery(\n  $id: ID!\n) {\n  span: node(id: $id) {\n    __typename\n    ... on Span {\n      name\n      spanId\n      trace {\n        traceId\n        id\n      }\n      events {\n        name\n        message\n        timestamp\n        attributes\n      }\n    }\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "da4db9f03c1de68590ebab7a4f543127";
+(node as any).hash = "9fb01bfc002177ff88f7c9e54832d3b5";
 
 export default node;
