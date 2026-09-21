@@ -33,10 +33,10 @@ NC := \033[0m # No Color
 	setup setup-remote-export install-python install-node \
 	graphql schema-graphql relay-build \
 	openapi schema-openapi schema-generative-ui ui-message-stream-fixtures codegen-python-client codegen-ts-client codegen-ts-app \
-	dev dev-backend dev-frontend dev-docker dev-mock-llm \
+	dev dev-backend dev-frontend dev-storybook dev-docker dev-mock-llm \
 	test test-python test-frontend test-ts test-helm test-jcs doctest typecheck typecheck-python typecheck-python-ty typecheck-frontend typecheck-ts \
 	format format-python format-frontend format-ts lint lint-python lint-frontend lint-ts clean-notebooks \
-	build build-python build-frontend build-ts \
+	build build-python build-frontend build-storybook build-ts \
 	mcp-skills codegen-prompts sync-models schema-ddl check-graphql-permissions check-filter-dsl-snippets check-skill-graphql-examples check-skill-filter-examples gen-otel-models \
 	gh-comment-watch \
 	harbor-stage harbor-plugin-e2e harbor-run harbor-view \
@@ -70,6 +70,7 @@ help: ## Show this help message
 	@echo -e "  $(YELLOW)dev$(NC)                   - Full dev environment (backend + frontend)"
 	@echo -e "  dev-backend            - Backend only (FastAPI server)"
 	@echo -e "  dev-frontend           - Frontend only (React dev server)"
+	@echo -e "  dev-storybook          - Component stories with hot reload (localhost:6007)"
 	@echo -e "  dev-docker             - Docker devops environment (use ARGS= for arguments)"
 	@echo -e "  dev-mock-llm           - Start the mock LLM server"
 	@echo -e ""
@@ -118,6 +119,7 @@ help: ## Show this help message
 	@echo -e "  $(YELLOW)build$(NC)                 - Build everything (Python + TypeScript workspace)"
 	@echo -e "  build-python           - Build Python package"
 	@echo -e "  build-frontend         - Build frontend only (js/app/ and its deps)"
+	@echo -e "  build-storybook        - Build component stories for review"
 	@echo -e "  build-ts               - Build all TypeScript (js/ workspace)"
 	@echo -e ""
 	@echo -e "$(GREEN)Cleanup:$(NC)"
@@ -271,6 +273,9 @@ dev-frontend: ## Frontend only (React dev server)
 	@echo -e "$(CYAN)Starting frontend dev server...$(NC)"
 	cd $(APP_DIR) && $(PNPM) run dev:ui
 
+dev-storybook: ## Component stories with hot reload (localhost:6007)
+	cd $(APP_DIR) && $(PNPM) run storybook --host 127.0.0.1 --no-open --disable-telemetry
+
 #=============================================================================
 # Testing
 #=============================================================================
@@ -385,6 +390,9 @@ build-frontend: ## Build frontend for production
 	@echo -e "$(CYAN)Building frontend...$(NC)"
 	@cd $(JS_DIR) && $(PNPM) --filter 'phoenix-ui...' run --silent build
 	@echo -e "$(GREEN)✓ Done$(NC)"
+
+build-storybook: ## Build component stories for review
+	cd $(APP_DIR) && $(PNPM) run build-storybook --disable-telemetry
 
 build-ts: ## Build all TypeScript (js/ workspace, including the app)
 	@echo -e "$(CYAN)Building TypeScript...$(NC)"
