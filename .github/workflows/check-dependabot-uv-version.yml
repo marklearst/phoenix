@@ -1,8 +1,6 @@
 name: Check Dependabot uv Version
 
 on:
-  schedule:
-    - cron: "0 13 * * 1-5"  # Weekdays 13:00 UTC
   workflow_dispatch:
 
 concurrency:

@@ -1,9 +1,6 @@
 name: Weekly Release Notes
 
 on:
-  schedule:
-    # Every Wednesday at 14:00 UTC
-    - cron: "0 14 * * 3"
   workflow_dispatch:
 
 concurrency:

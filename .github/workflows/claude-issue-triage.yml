@@ -1,8 +1,6 @@
 name: Claude Issue Triage
 
 on:
-  schedule:
-    - cron: "0 8 */2 * *" # this means "at 08:00 UTC every 2 days"
   workflow_dispatch:
     inputs:
       created:

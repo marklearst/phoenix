@@ -1,9 +1,6 @@
 name: Weekly llms.txt Audit
 
 on:
-  schedule:
-    # Every Wednesday at 15:00 UTC (1 hour after release notes)
-    - cron: "0 15 * * 3"
   workflow_dispatch:
 
 concurrency:

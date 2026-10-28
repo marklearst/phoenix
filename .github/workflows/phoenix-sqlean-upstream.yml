@@ -16,8 +16,6 @@ name: phoenix-sqlean upstream pins
 # the one platform where the likeliest failure cannot reproduce.
 
 on:
-  schedule:
-    - cron: "0 14 * * 1"  # Mondays 14:00 UTC. SQLite ships a few times a year.
   workflow_dispatch:
 
 concurrency:

@@ -1,9 +1,6 @@
 name: Weekly Docs Gap Audit
 
 on:
-  schedule:
-    # Every Wednesday at 16:00 UTC (after release notes at 14:00 and llms.txt at 15:00)
-    - cron: "0 16 * * 3"
   workflow_dispatch:
 
 concurrency:

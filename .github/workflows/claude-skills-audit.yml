@@ -1,9 +1,6 @@
 name: Weekly Skills Audit
 
 on:
-  schedule:
-    # Every Wednesday at 17:00 UTC (after docs-gap-audit at 16:00)
-    - cron: "0 17 * * 3"
   workflow_dispatch:
     inputs:
       window:
