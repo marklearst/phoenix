@@ -1,0 +1,28 @@
+{
+  "name": "mark-learst-agent",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A minimal calculator agent traced to local Phoenix",
+  "type": "module",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env --import tsx agent.ts",
+    "test": "node --import tsx --test calculator.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@ai-sdk/openai": "4.0.66",
+    "@ai-sdk/otel": "1.0.99",
+    "@arizeai/phoenix-otel": "2.2.0",
+    "@opentelemetry/api": "1.9.1",
+    "ai": "7.0.99",
+    "zod": "4.6.2"
+  },
+  "devDependencies": {
+    "@types/node": "26.5.1",
+    "tsx": "4.23.13",
+    "typescript": "7.0.2"
+  },
+  "engines": {
+    "node": ">=22.12"
+  }
+}
